@@ -1,0 +1,8 @@
+.searchBar {
+  background-color: cornflowerblue;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
