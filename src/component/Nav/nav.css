@@ -1,3 +1,9 @@
-nav {
-  display: flex;
+.mainnav > a {
+  color: cornflowerblue;
+  font-size: 1.4rem;
+  margin: 0.2rem 1rem;
+}
+
+a.activeLink:focus {
+  color: orangered;
 }
