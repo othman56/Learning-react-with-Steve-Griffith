@@ -18,7 +18,6 @@ function App() {
       <Header name={name} />
       <SearchBar terms={terms[0]} addTerm={addTerm} />
       <main className="content">
-        <SearchHistory terms={terms} />
         <Main />
       </main>
     </div>

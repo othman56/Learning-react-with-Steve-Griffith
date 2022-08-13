@@ -42,7 +42,9 @@ function Films(props) {
       </div>
       <div className="details">
         <Routes>
-          <Route path="/films/:id" element={<Films findFilm={findFilm} />} />
+          <Route path="/films">
+            <Route path=":id" element={<Films findFilm={findFilm} />} />
+          </Route>
         </Routes>
       </div>
     </>

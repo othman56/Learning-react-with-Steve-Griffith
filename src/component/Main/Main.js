@@ -28,13 +28,14 @@ function Main(props) {
       <>
         <Routes>
           {/* film holds state for fetch results */}
-          <Route path="/films" element={<Films />} />
-          {/* people is passed prop with fetch results */}
-          <Route path="/people" list={People} />
-          {/* person is passed prop with fetch results  */}
-          <Route path="/people/:id" element={<Person list={people} />} />
+          <Route path="/films/" element={<Films />} />
           {/* planets holds state for fetch redults */}
           <Route path="/planets/" element={<Planets />} />
+
+          {/* people is passed prop with fetch results */}
+          <Route path="/people" element={<People list={people} />} />
+          {/* person is passed prop with fetch results  */}
+          <Route path="/people/:id" element={<Person list={people} />} />
 
           <Route path="/" element={<Home />} />
         </Routes>

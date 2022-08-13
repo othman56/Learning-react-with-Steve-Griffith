@@ -11,7 +11,7 @@ function People({ list }) {
       {list.length === 0 && <p>No people...</p>}
       {list.map((item, index) => (
         <p key={item.name}>
-          <NavLink activeclassname="activeLink" to={`/people/${index} + 1`}>
+          <NavLink className="activeLink" to={`/people/${index + 1}`}>
             {item.name}
           </NavLink>
         </p>

@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 function Film({ findFilm }) {
-  const [film, setFilm] = useState(null);
-  const { id } = useParams();
+  const [film, setFilm] = useState([]);
+  let { id } = useParams();
 
   useEffect(() => {
     setFilm(findFilm(id));
