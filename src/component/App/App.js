@@ -1,7 +1,6 @@
 import "./App.css";
 import Header from "../Header/Header";
 import SearchBar from "../SearchBar/SearchBar";
-import SearchHistory from "../SearchHistory/SearchHistory";
 import { useState } from "react";
 import Main from "../Main/Main";
 function App() {

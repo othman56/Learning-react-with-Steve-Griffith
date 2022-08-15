@@ -8,7 +8,7 @@ import Person from "../Person/Person";
 import People from "../People/People";
 import Planets from "../Planets/Planets";
 
-function Main(props) {
+function Main() {
   // we could put state here to hold the list to share with children
   const { pathname } = useLocation();
   const [people, setPeople] = useState([]);
@@ -19,6 +19,7 @@ function Main(props) {
         let resp = await fetch("https://swapi.dev/api/people");
         let data = await resp.json();
         console.log("Fetched the people. Updating people state");
+        console.log(data.results);
         setPeople(data.results);
       }
     })();
