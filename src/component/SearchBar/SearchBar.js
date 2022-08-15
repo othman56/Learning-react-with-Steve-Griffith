@@ -1,18 +1,25 @@
-import React from "react";
+import React, { createRef, useEffect } from "react";
 import "../SearchBar/searchbar.css";
 
-function SearchBar(props) {
+function SearchBar({ keyword, saveSearch }) {
+  let inputRef = createRef(); //container for a DOM element
+
   const submitted = (e) => {
     e.preventDefault();
     console.log("submitted");
-    props.addTerm(e.target["keyword"].value);
+    saveSearch(inputRef.current.value);
   };
+  useEffect(() => {
+    //initial load plus if keyword in App changes
+    inputRef.current.value = keyword;
+  }, [keyword, inputRef]);
 
   return (
     <section className="searchBar">
       <form onSubmit={submitted}>
         <input
           type="text"
+          ref={inputRef}
           className="searchText"
           name="keyword"
           placeholder="keyword"
@@ -22,7 +29,7 @@ function SearchBar(props) {
           search
         </button>
       </form>
-      {props.term && <p>you searched for {props.terms}</p>}
+      {/* {props.term && <p>you searched for {props.terms}</p>} */}
     </section>
   );
 }

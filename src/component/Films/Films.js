@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route, NavLink } from "react-router-dom";
+import { Routes, Route, NavLink, Outlet } from "react-router-dom";
+import Film from "../Film/Film";
 import "./films.css";
 
 function Films(props) {
   //  state inside Planets, shared to Planet via props
   // second approach
 
-  const [List, setList] = useState([]);
+  const [List, setList] = useState([
+    // { id: 0, title: "Star wars", details: "my star wars" },
+    // { id: 0, title: "Avengers", details: "my star Avengers" },
+  ]);
 
   useEffect(() => {
     (function getFilms() {
@@ -42,9 +46,7 @@ function Films(props) {
       </div>
       <div className="details">
         <Routes>
-          <Route path="/films">
-            <Route path=":id" element={<Films findFilm={findFilm} />} />
-          </Route>
+          <Route path=":id" element={<Film findFilm={findFilm} />} />
         </Routes>
       </div>
     </>

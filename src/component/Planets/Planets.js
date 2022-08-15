@@ -41,10 +41,7 @@ function Planets() {
       </div>
       <div className="details">
         <Routes>
-          <Route
-            path="/planets/:id"
-            element={<Planet findPlanet={findPlanet} />}
-          />
+          <Route path=":id" element={<Planet findPlanet={findPlanet} />} />
         </Routes>
       </div>
     </>
