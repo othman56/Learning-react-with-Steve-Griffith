@@ -59,8 +59,9 @@ function Main({ keyword }) {
           </Route>
 
           {/* people is passed prop with fetch results */}
-          <Route path="/people/" element={<People list={people} />} />
+          <Route path="/people" exact element={<People list={people} />} />
           {/* person is passed prop with fetch results  */}
+          <Route path="/people/:id" element={<Person list={people} />} />
 
           <Route path="/" element={<Home time={new Date() - 5000000} />} />
         </Routes>
