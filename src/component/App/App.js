@@ -28,7 +28,7 @@ function App() {
     } else {
       console.log("SAME base path");
     }
-  }, [pathname]);
+  }, [pathname, page]);
 
   return (
     <div className="App">
