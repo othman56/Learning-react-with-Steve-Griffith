@@ -5,8 +5,6 @@ function Film({ findFilm }) {
   const [film, setFilm] = useState([]);
   let { id } = useParams();
 
-  console.log(id, " id");
-
   useEffect(() => {
     setFilm(findFilm(id));
   }, [findFilm, id]);

@@ -7,10 +7,7 @@ function Films(props) {
   //  state inside Planets, shared to Planet via props
   // second approach
 
-  const [List, setList] = useState([
-    // { id: 0, title: "Star wars", details: "my star wars" },
-    // { id: 0, title: "Avengers", details: "my star Avengers" },
-  ]);
+  const [List, setList] = useState([]);
 
   useEffect(() => {
     (function getFilms() {

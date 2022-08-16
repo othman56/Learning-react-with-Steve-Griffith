@@ -50,16 +50,16 @@ function Main({ keyword }) {
       <>
         <Routes>
           {/* film holds state for fetch results */}
-          <Route path="/films" exact element={<Films />}>
+          <Route path="/films/*" exact element={<Films />}>
             <Route path=":id" element={<Film />} />
           </Route>
           {/* planets holds state for fetch redults */}
-          <Route path="/planets" exact element={<Planets />}>
+          <Route path="/planets/*" exact element={<Planets />}>
             <Route path=":id" element={<Planet />} />
           </Route>
 
           {/* people is passed prop with fetch results */}
-          <Route path="/people" exact element={<People list={people} />} />
+          <Route path="/people/*" exact element={<People list={people} />} />
           {/* person is passed prop with fetch results  */}
           <Route path="/people/:id" element={<Person list={people} />} />
 
