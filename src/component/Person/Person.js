@@ -1,10 +1,9 @@
 import { useParams } from "react-router-dom";
 
 function Person({ list }) {
-  console.log(list);
   let { id } = useParams();
   // synchronous search through the list array
-  let person = list.find((person, index) => parseInt(id) === index + 1);
+  let person = list.find((item, index) => parseInt(id) === index + 1);
 
   return (
     <div>

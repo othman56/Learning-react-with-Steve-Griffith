@@ -4,11 +4,11 @@ import SearchBar from "../SearchBar/SearchBar";
 import { useEffect, useState } from "react";
 import Main from "../Main/Main";
 import { useLocation } from "react-router-dom";
+
 function App() {
   const name = "Company Name";
   let { pathname } = useLocation();
   const [page, setPage] = useState(pathname);
-  console.log(pathname);
   const [keyword, setKeyword] = useState("");
 
   const saveSearch = (term) => {
@@ -21,14 +21,14 @@ function App() {
     let newPath = pathname.split("/")[1];
     let oldPath = page.split("/")[1];
 
-    if (newPath != oldPath) {
+    if (newPath !== oldPath) {
       setPage(pathname);
       console.log("CHANGED the base path");
       setKeyword("");
     } else {
       console.log("SAME base path");
     }
-  }, [pathname, page]);
+  }, [pathname]);
 
   return (
     <div className="App">

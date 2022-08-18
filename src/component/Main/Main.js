@@ -19,51 +19,54 @@ function Main({ keyword }) {
 
   useEffect(() => {
     (async function () {
-      let url = "https://swapi.dev/api";
+      let url = "https://swapi.dev/api/";
 
-      // console.log(pathname.indexOf("/People") > -1, "lets see");
+      if (pathname.indexOf("/Films") > -1) {
+        let resp = await fetch(`${url}films?`);
+        let data = await resp.json();
+        console.log("Fetched the films. Updating films state");
+        setFilms(data.results);
+      }
       if (pathname.indexOf("/People") > -1) {
-        let resp = await fetch(`${url}/people?search=${keyword}`);
+        let resp = await fetch(`${url}people?`);
         let data = await resp.json();
         console.log("Fetched the people. Updating people state");
         setPeople(data.results);
       }
       if (pathname.indexOf("/Planets") > -1) {
-        let resp = await fetch(`${url}/planets?search=${keyword}`);
+        let resp = await fetch(`${url}planets?`);
         let data = await resp.json();
         console.log("Fetched the planets. Updating planets state");
         setPlanets(data.results);
       }
-      if (pathname.indexOf("/Films") > -1) {
-        let resp = await fetch(`${url}/films?search=${keyword}`);
-        let data = await resp.json();
-        console.log("Fetched the films. Updating films state");
-        setFilms(data.results);
-      }
     })();
   }, [pathname, keyword]);
-  function findFilm(id) {
-    return 1;
-  }
+
   return (
     <div className="mainContent">
       <>
         <Routes>
-          {/* film holds state for fetch results */}
-          <Route path="/films/*" exact element={<Films />}>
-            <Route path=":id" element={<Film />} />
-          </Route>
-          {/* planets holds state for fetch redults */}
-          <Route path="/planets/*" exact element={<Planets />}>
-            <Route path=":id" element={<Planet />} />
-          </Route>
+          <>
+            {/* people is passed prop with fetch results */}
+            <Route path="/films/*" exact element={<Films list={films} />} />
+            {/* person is passed prop with fetch results  */}
+            <Route path="films/:id" element={<Film list={films} />} />
 
-          {/* people is passed prop with fetch results */}
-          <Route path="/people/*" exact element={<People list={people} />} />
-          {/* person is passed prop with fetch results  */}
-          <Route path="/people/:id" element={<Person list={people} />} />
+            <Route
+              path="/planets/*"
+              exact
+              element={<Planets list={planets} />}
+            />
+            {/* person is passed prop with fetch results  */}
+            <Route path="/planets/:id" element={<Planet list={planets} />} />
 
-          <Route path="/" element={<Home time={new Date() - 5000000} />} />
+            <Route path="/people/*" exact element={<People list={people} />}>
+              {/* person is passed prop with fetch results  */}
+              <Route path="/people/*:id" element={<Person list={people} />} />
+            </Route>
+
+            <Route path="/" element={<Home time={new Date() - 5000000} />} />
+          </>
         </Routes>
       </>
     </div>
