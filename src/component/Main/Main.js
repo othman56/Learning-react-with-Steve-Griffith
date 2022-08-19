@@ -22,19 +22,19 @@ function Main({ keyword }) {
       let url = "https://swapi.dev/api/";
 
       if (pathname.indexOf("/Films") > -1) {
-        let resp = await fetch(`${url}films?`);
+        let resp = await fetch(`${url}films?search=${keyword}`);
         let data = await resp.json();
         console.log("Fetched the films. Updating films state");
         setFilms(data.results);
       }
       if (pathname.indexOf("/People") > -1) {
-        let resp = await fetch(`${url}people?`);
+        let resp = await fetch(`${url}people?search=${keyword}`);
         let data = await resp.json();
         console.log("Fetched the people. Updating people state");
         setPeople(data.results);
       }
       if (pathname.indexOf("/Planets") > -1) {
-        let resp = await fetch(`${url}planets?`);
+        let resp = await fetch(`${url}planets?search=${keyword}`);
         let data = await resp.json();
         console.log("Fetched the planets. Updating planets state");
         setPlanets(data.results);
@@ -58,7 +58,7 @@ function Main({ keyword }) {
               element={<Planets list={planets} />}
             />
             {/* person is passed prop with fetch results  */}
-            <Route path="/planets/:id" element={<Planet list={planets} />} />
+            <Route path="/planets/*:id" element={<Planet list={planets} />} />
 
             <Route path="/people/*" exact element={<People list={people} />}>
               {/* person is passed prop with fetch results  */}
