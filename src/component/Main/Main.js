@@ -58,7 +58,7 @@ function Main({ keyword }) {
               element={<Planets list={planets} />}
             />
             {/* person is passed prop with fetch results  */}
-            <Route path="/planets/*:id" element={<Planet list={planets} />} />
+            <Route path="/planets/:id" element={<Planet list={planets} />} />
 
             <Route path="/people/*" exact element={<People list={people} />}>
               {/* person is passed prop with fetch results  */}

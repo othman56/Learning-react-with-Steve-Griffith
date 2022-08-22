@@ -1,23 +1,22 @@
 import { NavLink } from "react-router-dom";
 import "./people.css";
 
-function People({ list }) {
-  // state fetch don in main.js amd passed as props.list
-  // props.list also passed to person
-  // destructure to get list
+export default function People({ list }) {
+  //state fetch done in Main.js and passed as props.list
+  //props.list also passed to Person
+  //destructure to get list
+
   return (
     <div className="results">
-      <h2>people List</h2>
+      <h2>People List</h2>
       {list.length === 0 && <p>No people...</p>}
-      {list.map((people, index) => (
-        <p key={people.name}>
+      {list.map((item, index) => (
+        <p key={item.name}>
           <NavLink className="activeLink" to={`/people/${index + 1}`}>
-            {people.name}
+            {item.name}
           </NavLink>
         </p>
       ))}
     </div>
   );
 }
-
-export default People;

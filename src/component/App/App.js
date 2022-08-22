@@ -1,7 +1,7 @@
 import "./App.css";
 import Header from "../Header/Header";
 import SearchBar from "../SearchBar/SearchBar";
-import { createRef, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Main from "../Main/Main";
 import { useLocation } from "react-router-dom";
 
@@ -30,13 +30,10 @@ function App() {
     }
   }, [pathname]);
 
-  const sbInputRef = createRef();
-  // const sbInputRef = useRef();
-
   return (
     <div className="App">
       <Header name={name} />
-      <SearchBar ref={sbInputRef} keyword={keyword} saveSearch={saveSearch} />
+      <SearchBar keyword={keyword} saveSearch={saveSearch} />
       <main className="content">
         <Main keyword={keyword} />
       </main>
