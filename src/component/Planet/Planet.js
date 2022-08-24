@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import "./planet.css";
 
 export default function Planet({ list }) {
   const { id } = useParams();
@@ -12,9 +13,9 @@ export default function Planet({ list }) {
   );
 
   return (
-    <>
+    <div className="planes-details">
       <h2>Planet Details</h2>
       {planet && planet.name === "Alderaan" ? "Too soon." : details}
-    </>
+    </div>
   );
 }

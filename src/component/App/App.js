@@ -4,6 +4,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import { useEffect, useState } from "react";
 import Main from "../Main/Main";
 import { useLocation } from "react-router-dom";
+import { FavProvider } from "../../Context/FavContext";
 
 function App() {
   const name = "Company Name";
@@ -31,13 +32,15 @@ function App() {
   }, [pathname]);
 
   return (
-    <div className="App">
-      <Header name={name} />
-      <SearchBar keyword={keyword} saveSearch={saveSearch} />
-      <main className="content">
-        <Main keyword={keyword} />
-      </main>
-    </div>
+    <FavProvider>
+      <div className="App">
+        <Header name={name} />
+        <SearchBar keyword={keyword} saveSearch={saveSearch} />
+        <main className="content">
+          <Main keyword={keyword} />
+        </main>
+      </div>
+    </FavProvider>
   );
 }
 
