@@ -12,7 +12,7 @@ function FavProvider(props) {
   };
   const [fav, setFav] = useState(shape);
 
-  function updateFav({ type, id, data }) {
+  function updateFav(type, id, data) {
     setFav({
       type,
       id,
