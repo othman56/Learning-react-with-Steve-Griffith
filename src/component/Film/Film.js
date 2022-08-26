@@ -21,8 +21,12 @@ function Film({ list }) {
       <h2>Film Details {id}</h2>
       {film && details}
       <p>the current id of the favourite is {fav.id}</p>
+      <p>{fav.data.title && <>favourite film is {fav.data.title}</>}</p>
       <p>
-        <button onClick={clicked}>Set as fav</button>
+        <button onClick={clicked}>
+          <span className="material-icons">favorite</span>
+          Set as fav
+        </button>
       </p>
     </div>
   );
