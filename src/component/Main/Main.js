@@ -9,6 +9,7 @@ import People from "../People/People";
 import Planets from "../Planets/Planets";
 import Film from "../Film/Film";
 import Planet from "../Planet/Planet";
+import axios from "axios";
 
 function Main({ keyword }) {
   // we could put state here to hold the list to share with children
@@ -21,26 +22,33 @@ function Main({ keyword }) {
     (async function () {
       let url = "https://swapi.dev/api/";
 
-      if (pathname.indexOf("/Films") > -1) {
-        let resp = await fetch(`${url}films?search=${keyword}`);
-        let data = await resp.json();
-        console.log("Fetched the films. Updating films state");
-        setFilms(data.results);
-      }
-      if (pathname.indexOf("/People") > -1) {
-        let resp = await fetch(`${url}people?search=${keyword}`);
-        let data = await resp.json();
-        console.log("Fetched the people. Updating people state");
-        setPeople(data.results);
-      }
-      if (pathname.indexOf("/Planets") > -1) {
-        let resp = await fetch(`${url}planets?search=${keyword}`);
-        let data = await resp.json();
-        console.log("Fetched the planets. Updating planets state");
-        setPlanets(data.results);
-      }
+      if (pathname.indexOf("/Films") > -1)
+        if (films.length === 0) {
+          let resp = await fetch(`${url}films?search=${keyword}`);
+          let data = await resp.json();
+          setFilms(data.results);
+        }
+      if (pathname.indexOf("/People") > -1)
+        if (people.length === 0) {
+          axios
+            .get(`${url}people?search=${keyword}`)
+            .then((resp) => {
+              let data = resp.data;
+              setPeople(data.results);
+            })
+            .catch();
+          // let resp = await fetch(`${url}people?search=${keyword}`);
+          // let data = await resp.json();
+          // setPeople(data.results);
+        }
+      if (pathname.indexOf("/Planets") > -1)
+        if (Planets.length === 0) {
+          let resp = await fetch(`${url}planets?search=${keyword}`);
+          let data = await resp.json();
+          setPlanets(data.results);
+        }
     })();
-  }, [pathname, keyword]);
+  }, [pathname, keyword, people, planets, films]);
 
   return (
     <div className="mainContent">
