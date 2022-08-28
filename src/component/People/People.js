@@ -10,8 +10,10 @@ export default function People({ list }) {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    setTimeout(setLoaded, 800, true);
-    // setLoaded(true);
+    if (list.length === 0) {
+      setTimeout(setLoaded, 800, true);
+      // setLoaded(true);
+    }
   }, [list]);
 
   return (

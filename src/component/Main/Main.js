@@ -4,12 +4,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { lazy, Suspense, useState, useEffect } from "react";
 import Home from "../Home/Home";
 import Spinner from "../Spinner/Spinner";
-// import Films from "../Films/Films";
-// import Person from "../Person/Person";
-// import People from "../People/People";
-// import Planets from "../Planets/Planets";
-// import Film from "../Film/Film";
-// import Planet from "../Planet/Planet";
+
 import axios from "axios";
 
 function Main({ keyword }) {
