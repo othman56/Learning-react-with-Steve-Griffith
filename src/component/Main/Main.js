@@ -1,18 +1,27 @@
 import React from "react";
 import "./main.css";
 import { Routes, Route, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { lazy, Suspense, useState, useEffect } from "react";
 import Home from "../Home/Home";
-import Films from "../Films/Films";
-import Person from "../Person/Person";
-import People from "../People/People";
-import Planets from "../Planets/Planets";
-import Film from "../Film/Film";
-import Planet from "../Planet/Planet";
+import Spinner from "../Spinner/Spinner";
+// import Films from "../Films/Films";
+// import Person from "../Person/Person";
+// import People from "../People/People";
+// import Planets from "../Planets/Planets";
+// import Film from "../Film/Film";
+// import Planet from "../Planet/Planet";
 import axios from "axios";
 
 function Main({ keyword }) {
   // we could put state here to hold the list to share with children
+
+  const Films = lazy(() => import("../Films/Films"));
+  const Film = lazy(() => import("../Film/Film"));
+  const Planets = lazy(() => import("../Planets/Planets"));
+  const Planet = lazy(() => import("../Planet/Planet"));
+  const People = lazy(() => import("../People/People"));
+  const Person = lazy(() => import("../Person/Person"));
+
   const { pathname } = useLocation();
   const [people, setPeople] = useState([]); //list of people
   const [planets, setPlanets] = useState([]); // list of planets
@@ -37,9 +46,6 @@ function Main({ keyword }) {
               setPeople(data.results);
             })
             .catch();
-          // let resp = await fetch(`${url}people?search=${keyword}`);
-          // let data = await resp.json();
-          // setPeople(data.results);
         }
       if (pathname.indexOf("/Planets") > -1)
         if (Planets.length === 0) {
@@ -54,27 +60,73 @@ function Main({ keyword }) {
     <div className="mainContent">
       <>
         <Routes>
-          <>
-            {/* people is passed prop with fetch results */}
-            <Route path="/films/*" exact element={<Films list={films} />} />
-            {/* person is passed prop with fetch results  */}
-            <Route path="films/:id" element={<Film list={films} />} />
+          {/* people is passed prop with fetch results */}
+          <Route
+            path="/films/*"
+            exact
+            element={
+              <React.Suspense fallback={<Spinner>LOADING FILMS...</Spinner>}>
+                <Films list={films} />
+              </React.Suspense>
+            }
+          />
 
-            <Route
-              path="/planets/*"
-              exact
-              element={<Planets list={planets} />}
-            />
-            {/* person is passed prop with fetch results  */}
-            <Route path="/planets/:id" element={<Planet list={planets} />} />
+          <Route
+            path="films/:id"
+            element={
+              <React.Suspense
+                fallback={<Spinner>LOADING FILM DETAILS...</Spinner>}
+              >
+                <Film list={films} />
+              </React.Suspense>
+            }
+          />
 
-            <Route path="/people/*" exact element={<People list={people} />}>
-              {/* person is passed prop with fetch results  */}
-              <Route path="/people/*:id" element={<Person list={people} />} />
-            </Route>
+          <Route
+            path="/planets/*"
+            exact
+            element={
+              <React.Suspense fallback={<Spinner>LOADING PLANETS...</Spinner>}>
+                <Planets list={planets} />
+              </React.Suspense>
+            }
+          />
 
-            <Route path="/" element={<Home time={new Date() - 5000000} />} />
-          </>
+          {/* person is passed prop with fetch results  */}
+          <Route
+            path="/planets/:id"
+            element={
+              <React.Suspense
+                fallback={<Spinner>LOADING PLANET DEATAILS</Spinner>}
+              >
+                <Planet list={planets} />
+              </React.Suspense>
+            }
+          />
+
+          <Route
+            path="/people/*"
+            exact
+            element={
+              <React.Suspense fallback={<Spinner>LOADING PEOPLE</Spinner>}>
+                <People list={people} />
+              </React.Suspense>
+            }
+          />
+
+          {/* person is passed prop with fetch results  */}
+          <Route
+            path="/people/*:id"
+            element={
+              <React.Suspense
+                fallback={<Spinner>LOADING PERSON DEATAILS</Spinner>}
+              >
+                <Person list={people} />
+              </React.Suspense>
+            }
+          />
+
+          <Route path="/" element={<Home time={new Date() - 5000000} />} />
         </Routes>
       </>
     </div>
