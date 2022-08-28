@@ -10,16 +10,14 @@ export default function People({ list }) {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    if (list.length === 0) {
-      setTimeout(setLoaded, 800, true);
-      // setLoaded(true);
-    }
+    setTimeout(setLoaded, 800, true);
+    // setLoaded(true);
   }, [list]);
 
   return (
     <div className="results">
       <h2>People List</h2>
-      {loaded && <Spinner>LOADING PEOPLE...</Spinner>}
+      {!loaded && <Spinner>LOADING PEOPLE...</Spinner>}
       {list.length === 0 && <p>No people...</p>}
       {list.map((item, index) => (
         <p key={item.name}>

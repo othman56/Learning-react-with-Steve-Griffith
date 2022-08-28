@@ -15,7 +15,7 @@ function Planets({ list }) {
     <>
       <div className="results">
         <h2>Planet List</h2>
-        {loaded && <Spinner>LOADING PLANETS...</Spinner>}
+        {!loaded && <Spinner>LOADING PLANETS...</Spinner>}
         {list.length === 0 && <p>No planets...</p>}
         {list.map((planet, index) => (
           <p key={planet.name}>

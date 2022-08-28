@@ -1,7 +1,7 @@
 import React from "react";
 import "./main.css";
 import { Routes, Route, useLocation } from "react-router-dom";
-import { lazy, Suspense, useState, useEffect } from "react";
+import { lazy, useState, useEffect } from "react";
 import Home from "../Home/Home";
 import Spinner from "../Spinner/Spinner";
 
@@ -32,18 +32,21 @@ function Main({ keyword }) {
           let data = await resp.json();
           setFilms(data.results);
         }
+
+      // using Axios to make fetch calls for peple
       if (pathname.indexOf("/People") > -1)
         if (people.length === 0) {
           axios
-            .get(`${url}people?search=${keyword}`)
+            .get(`${url}/people?search=${keyword}`)
             .then((resp) => {
               let data = resp.data;
               setPeople(data.results);
             })
+
             .catch();
         }
       if (pathname.indexOf("/Planets") > -1)
-        if (Planets.length === 0) {
+        if (planets.length === 0) {
           let resp = await fetch(`${url}planets?search=${keyword}`);
           let data = await resp.json();
           setPlanets(data.results);

@@ -17,7 +17,7 @@ function Films({ list }) {
     <div className="results">
       <h2>Film List</h2>
 
-      {loaded && <Spinner>LOADING FILMS...</Spinner>}
+      {!loaded && <Spinner>LOADING FILMS...</Spinner>}
       {list.length === 0 && <p>No Films...</p>}
       {list.map((film, index) => (
         <p key={film.title}>
