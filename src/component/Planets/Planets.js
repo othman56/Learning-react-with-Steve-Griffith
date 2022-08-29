@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./planets.css";
 import Spinner from "../Spinner/Spinner";
+import { useFav } from "../../Context/FavContext";
 
 function Planets({ list }) {
+  const [fav] = useFav();
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -23,6 +25,11 @@ function Planets({ list }) {
           <p key={planet.name}>
             <NavLink className="activeLink" to={`/planets/${index + 1}`}>
               {planet.name}
+              {fav.type === "planets" && index + 1 === parseInt(fav.id) && (
+                <>
+                  <span className="material-icons">favorite</span> FAVOURITE!
+                </>
+              )}
             </NavLink>
           </p>
         ))}

@@ -4,6 +4,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { lazy, useState, useEffect } from "react";
 import Home from "../Home/Home";
 import Spinner from "../Spinner/Spinner";
+import useStarWars from "../../Hooks/useStarWars";
 
 import axios from "axios";
 
@@ -18,9 +19,9 @@ function Main({ keyword }) {
   const Person = lazy(() => import("../Person/Person"));
 
   const { pathname } = useLocation();
-  const [people, setPeople] = useState([]); //list of people
-  const [planets, setPlanets] = useState([]); // list of planets
-  const [films, setFilms] = useState([]); // list of films
+  const [people, setPeople] = useStarWars(["people"]); //list of people
+  const [planets, setPlanets] = useStarWars(["planets"]); // list of planets
+  const [films, setFilms] = useStarWars([films]); // list of films
 
   useEffect(() => {
     (async function () {

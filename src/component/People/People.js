@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import "./people.css";
 import Spinner from "../Spinner/Spinner";
 import { useEffect, useState } from "react";
+import { useFav } from "../../Context/FavContext";
 
 export default function People({ list }) {
   //state fetch done in Main.js and passed as props.list
@@ -25,6 +26,11 @@ export default function People({ list }) {
         <p key={item.name}>
           <NavLink className="activeLink" to={`/people/${index + 1}`}>
             {item.name}
+            {fav.type === "planets" && index + 1 === parseInt(fav.id) && (
+              <>
+                <span className="material-icons">favorite</span> FAVOURITE!
+              </>
+            )}
           </NavLink>
         </p>
       ))}
